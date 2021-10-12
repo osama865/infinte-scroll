@@ -1,0 +1,134 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container > h1{
+  font-family: sans-serif;
+  font-weight: 800;
+  font-size: 43px;
+  margin-top: 50px;
+}
+.message{
+  width: 500px;
+  height: 200px;
+  
+  background: rgb(75, 75, 75);
+  padding: 20px;
+  margin: 40px 0;
+  border-radius: 10px;
+}
+.message h1{
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: 760;
+  color: white;
+}
+.message p{
+  font-family: sans-serif;
+  padding: 5px;
+  text-align: center;
+  color: rgb(245, 239, 239);
+  font-size: 18px;
+}
+.btn-filter {
+  width: 120px;
+  height: 50px;
+  background: rgb(17, 8, 51);
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  color: rgb(255, 255, 255);
+}
+
+.btn-pause {
+  width: 120px;
+  height: 50px;
+  background: rgb(48, 6, 6);
+  padding: 10px;
+  border-radius: 10px;
+  color: rgb(255, 255, 255);
+}
+/* The Loading Animation */
+.loading{
+  width: 150px;
+  height: 70px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ball{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: black;
+  margin: 0 10px;
+}
+.first{
+  animation: slide 2s  ease-in-out infinite ;
+  animation-delay: .1s;
+}
+.second{
+  animation: slide 2s ease-in-out infinite;
+  animation-delay: .5s;
+}
+.third{
+  animation: slide 2s ease-in-out infinite;
+  animation-delay: 1s;
+}
+@keyframes slide{
+  from{
+      transform: translateY(-30px);
+  }
+  to{
+      transform: translateY(0);
+  }
+}
+
+.error {
+  background-color: rgb(196, 39, 70);
+}
+
+.verbose {
+  background: rgb(37, 40, 214);
+}
+
+.warning {
+  background: rgb(207, 178, 47);
+}
+
+.info {
+  background: rgb(57, 122, 41);
+}
+
+/* .filters {
+  margin: 0;
+padding: 0;
+box-sizing: border-box;
+display: inline;
+float: right;
+position: fixed;
+right: 40px;
+}
+ */
+.float-to-right {
+  position: fixed;
+  float: left;
+  right: 40px;
+  border-radius:50px;
+  text-align:center;
+  box-shadow: 2px 2px 3px #999;
+}
