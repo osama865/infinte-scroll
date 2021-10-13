@@ -4,6 +4,8 @@ import { Accounts } from "meteor/accounts-base";
 import { check } from "meteor/check";
 import seed from "./seed";
 import "../imports/api/publications"
+const Time = require('dayjs');
+
 
 
 Meteor.methods({
@@ -15,9 +17,9 @@ Meteor.methods({
 
 
 // first define the insertion method
+const insertMessage = doc => messageCollection.insert(doc)
 Meteor.startup(() => {
-  // If there is no acc with the user name then create it
   if (true) {
-    // seed.forEach(insertMessage);
+    // seed.forEach(insertMessage)
   }
 });

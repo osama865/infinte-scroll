@@ -3,9 +3,15 @@ import { Meteor } from "meteor/meteor";
 import { useTracker } from "meteor/react-meteor-data";
 import Message from "./message";
 
+/*
+sync / pause done 
+filters done
+options date aesc / desc
+*/
+
 export const App = () => {
   const [messages, setMessages] = useState([]);
-  const [pause, setPause] = useState(false);
+  const [pause, setPause] = useState(true);
   const [fetch, setFetch] = useState(false);
   const [limit, setLimit] = useState(10);
   const [skip, setSkip] = useState(0);
@@ -14,7 +20,7 @@ export const App = () => {
   const [date, setDate] = useState(1);
   const [more, setMore] = useState(true);
   const [filters, setFilters] = useState({});
-  const [options, setOptions] = useState({ limit, skip });
+  const [options, setOptions] = useState({ limit, skip , sort : {createdAt : date}});
 
   const observer = useRef();
 
@@ -33,19 +39,24 @@ export const App = () => {
   );
 
   useEffect(() => {
-    setMessages([]);
-  }, [filters, options]);
-
+    setMessages([])
+  }, [options , filters])
+  
   useEffect(() => {
-    Meteor.call("fetchMessages", filters, options, (err, res) =>
-      setMessages((prev) => {
-        return [...new Set([...prev, ...res])];
-      })
-    );
-    console.log("filters or options have change");
-    console.log(filters);
-    console.log(messages);
-  }, [filters, options , more]);
+    if (pause) {
+      Meteor.subscribe('messages')
+      Meteor.call("fetchMessages", filters, options, (err, res) =>{
+        console.log(res.length);
+        setMessages((prev) => {
+          return [...new Set([...prev, ...res])];
+        })
+      }
+      );
+      console.log(options.sort.createdAt);
+  }
+  }, [filters, options , more , date]) 
+  console.log(pause);
+  
 
   console.log(messages);
 
@@ -100,14 +111,14 @@ export const App = () => {
           </button>
           filter by {date == 1 ? "ascending" : "descending"}
           <button
-            onClick={() => setOptions({ ...options })}
+            onClick={()=> setOptions({...options , sort : {createdAt : 1}}) }
             className=" btn-filter"
             type="submit"
           >
             Filter ascending
           </button>
           <button
-            onClick={() => setOptions({ ...options })}
+            onClick={()=> setOptions({...options , sort : {createdAt : -1}}) }
             className="btn-filter "
             type="submit"
           >
@@ -134,11 +145,11 @@ export const App = () => {
         </div>
 
         <button
-          onClick={() => setPause(!pause)}
+          onClick={() => setPause(pause == true ? false : true)}
           className="btn-pause"
           type="submit"
         >
-          {pause == true ? "sync data" : " Stop sync data"}
+          {pause === true ?  " Stop sync data" : "sync data" }
         </button>
         {messages?.map((message, index) => {
           if (messages.length === index + 1) {
