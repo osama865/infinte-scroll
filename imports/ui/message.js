@@ -7,7 +7,7 @@ export default function Message({ message , ref}) {
         <h1>{message.type}</h1>
         <p>{message.body}</p>
         <p>{message.source}</p>
-        <p>{message._id}</p>
+        <p>{message._id._str}</p>
       </div>
     )}
   </>;

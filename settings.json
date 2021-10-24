@@ -1,0 +1,15 @@
+{
+    "packages": {
+        "mongo": {
+            "options": {
+                "tlsAllowInvalidCertificates": true
+            }
+        }
+    },
+    "galaxy.meteor.com": {
+        "env": {
+            "ROOT_URL": "https://infinte-scroll.meteorapp.com",
+            "MONGO_URL": "mongodb+srv://osama:N5uBNpY5FKG7vfy0@cluster0.ezstx.mongodb.net/logs?retryWrites=true&w=majority"
+        }
+    }
+}

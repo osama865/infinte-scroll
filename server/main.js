@@ -13,5 +13,6 @@ Meteor.methods({
 });
 
 Meteor.startup(() => {
-  
+  //process.env.MONGO_URL = "mongodb+srv://osama:N5uBNpY5FKG7vfy0@cluster0.ezstx.mongodb.net/logs?retryWrites=true&w=majority"
+  console.log(Meteor.settings)
 });
